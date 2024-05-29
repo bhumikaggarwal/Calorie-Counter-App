@@ -6,7 +6,10 @@ const clearButton = document.getElementById('clear');
 const output = document.getElementById('output');
 let isError = false;
 
-function cleanInputString(str) {
+function cleanInputString(str) {                  /* Regular expressions are patterns that matches characters in string. Here it is searching 
+                                                  the no we are giving as input is not+,- or containa ny spaces, if it does any of above thing
+                                                   then we replace it with an empty string. In the next we see if we are not putting any exponen-
+                                                   -tial no as our input and \d=digits from 0 to 9 , g is global flag, i is case insensitive. */
   const regex = /[+-\s]/g;
   return str.replace(regex, '');
 }
@@ -17,8 +20,9 @@ function isInvalidInput(str) {
 }
 
 function addEntry() {
-  const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);
-  const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1;
+  const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`); //used # bcz we are passing id in querySelector
+     //querySelector returns the result in form of a Node List kind of array object not actual array
+     const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1; //queries for no of inputs been added in targetInput container
   const HTMLString = `
   <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
   <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
